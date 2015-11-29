@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 import contextlib
 import hashlib
 import random
@@ -7,7 +5,7 @@ import random
 try:
     from urllib.parse import quote, quote_plus
 except ImportError:
-    from urllib import quote, quote_plus
+    from urllib.parse import quote, quote_plus
 
 import requests
 from requests_oauthlib import OAuth1
@@ -98,7 +96,7 @@ class LinkedInAuthentication(object):
               'redirect_uri': self.redirect_uri}
         # urlencode uses quote_plus when encoding the query string so,
         # we ought to be encoding the qs by on our own.
-        qsl = ['%s=%s' % (quote(k), quote(v)) for k, v in qd.items()]
+        qsl = ['%s=%s' % (quote(k), quote(v)) for k, v in list(qd.items())]
         return '%s?%s' % (self.AUTHORIZATION_URL, '&'.join(qsl))
 
     @property
@@ -129,7 +127,7 @@ class LinkedInSelector(object):
     def parse(cls, selector):
         with contextlib.closing(StringIO()) as result:
             if type(selector) == dict:
-                for k, v in selector.items():
+                for k, v in list(selector.items()):
                     result.write('%s:(%s)' % (to_utf8(k), cls.parse(v)))
             elif type(selector) in (list, tuple):
                 result.write(','.join(map(cls.parse, selector)))
@@ -342,7 +340,7 @@ class LinkedInApplication(object):
         identifiers = []
         url = ENDPOINTS.COMPANIES
         if company_ids:
-            identifiers += map(str, company_ids)
+            identifiers += list(map(str, company_ids))
 
         if universal_names:
             identifiers += ['universal-name=%s' % un for un in universal_names]

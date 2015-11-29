@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-import BaseHTTPServer
-import urlparse
+import http.server
+import urllib.parse
 
 from .linkedin import LinkedInApplication, LinkedInAuthentication, PERMISSIONS
 
@@ -19,22 +18,22 @@ def quick_api(api_key, secret_key, port=8000):
     object.
     """
     auth = LinkedInAuthentication(api_key, secret_key, 'http://localhost:8000/',
-                                  PERMISSIONS.enums.values())
+                                  list(PERMISSIONS.enums.values()))
     app = LinkedInApplication(authentication=auth)
-    print auth.authorization_url
+    print(auth.authorization_url)
     _wait_for_user_to_enter_browser(app, port)
     return app
 
 
 def _wait_for_user_to_enter_browser(app, port):
-    class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+    class MyHandler(http.server.BaseHTTPRequestHandler):
         def do_GET(self):
             p = self.path.split('?')
             if len(p) > 1:
-                params = urlparse.parse_qs(p[1], True, True)
+                params = urllib.parse.parse_qs(p[1], True, True)
                 app.authentication.authorization_code = params['code'][0]
                 app.authentication.get_access_token()
 
     server_address = ('', port)
-    httpd = BaseHTTPServer.HTTPServer(server_address, MyHandler)
+    httpd = http.server.HTTPServer(server_address, MyHandler)
     httpd.handle_request()

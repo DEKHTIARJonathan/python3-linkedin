@@ -12,9 +12,9 @@ This library provides a pure Python interface to the LinkedIn **Profile**, **Gro
 
 [![Build Status](https://travis-ci.org/ozgur/python-linkedin.png?branch=master)](https://travis-ci.org/ozgur/python-linkedin)
 
-You can install **python-linkedin** library via pip:
+~~You can install **python-linkedin** library via pip:~~
 
-    $ pip install python-linkedin
+    ~~$ pip install python-linkedin~~
 
 ## Authentication
 

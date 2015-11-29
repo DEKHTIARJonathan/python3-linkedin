@@ -2,17 +2,17 @@ import contextlib
 import hashlib
 import random
 
-try:
-    from urllib.parse import quote, quote_plus
-except ImportError:
-    from urllib.parse import quote, quote_plus
+from urllib.parse import quote, quote_plus
 
 import requests
 from requests_oauthlib import OAuth1
 
+from io import StringIO
+
 from .exceptions import LinkedInError
 from .models import AccessToken, LinkedInInvitation, LinkedInMessage
-from .utils import enum, to_utf8, raise_for_error, json, StringIO
+from .utils import enum, to_utf8, raise_for_error, json
+
 
 
 __all__ = ['LinkedInAuthentication', 'LinkedInApplication', 'PERMISSIONS']

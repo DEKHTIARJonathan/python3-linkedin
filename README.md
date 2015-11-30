@@ -10,11 +10,19 @@ This library provides a pure Python interface to the LinkedIn **Profile**, **Gro
 
 ## Installation
 
-[![Build Status](https://travis-ci.org/ozgur/python-linkedin.png?branch=master)](https://travis-ci.org/ozgur/python-linkedin)
+At the moment while I am working out the issues with migrating to Python 3.4+ please install using this git repo and the setup.py file
 
-~~You can install **python-linkedin** library via pip:~~
+One would clone the repo via:
 
-    ~~$ pip install python-linkedin~~
+git clone https://github.com/marshallhumble/python-linkedin.git
+
+(or download the zip)
+
+and then move into the directory and run
+
+python setup.py install
+
+This will allow you to install this version on your system
 
 ## Authentication
 

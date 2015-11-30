@@ -17,6 +17,13 @@ from .utils import enum, to_utf8, raise_for_error, json
 
 __all__ = ['LinkedInAuthentication', 'LinkedInApplication', 'PERMISSIONS']
 
+"""
+It looks like linked has changed the permissions it will grant to clients, some od these items are no longer
+allowed.  I will put the ones here in the comments that I have removed:
+
+    EMAIL_ADDRESS='r_emailaddress',
+"""
+
 PERMISSIONS = enum('Permission',
                    COMPANY_ADMIN='rw_company_admin',
                    BASIC_PROFILE='r_basicprofile',
@@ -96,8 +103,11 @@ class LinkedInAuthentication(object):
               'redirect_uri': self.redirect_uri}
         # urlencode uses quote_plus when encoding the query string so,
         # we ought to be encoding the qs by on our own.
-        qsl = ['%s=%s' % (quote(k), quote(v)) for k, v in list(qd.items())]
-        return '%s?%s' % (self.AUTHORIZATION_URL, '&'.join(qsl))
+        # we need to not return this as a string and instead return as bytes for urlib.parse
+        qsl = []
+        for k, v in list(qd.items()):
+            qsl.append('%s=%s' % (quote(k), quote(v)))
+        return self.AUTHORIZATION_URL, '&'.join(qsl)
 
     @property
     def last_error(self):

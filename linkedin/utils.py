@@ -12,20 +12,12 @@ except ImportError:
         import json
 
 
-if sys.version_info < (3,):
-    import builtins
+def to_utf8(x):
+    return x
 
-    def to_utf8(x):
-        return builtins.str(x)
 
-    def to_string(x):
-        return str(x)
-else:
-    def to_utf8(x):
-        return x
-
-    def to_string(x):
-        return x
+def to_string(x):
+    return x
 
 
 def enum(enum_type='enum', base_classes=None, methods=None, **attrs):
@@ -50,6 +42,7 @@ def enum(enum_type='enum', base_classes=None, methods=None, **attrs):
     methods.update(attrs)
     methods['__init__'] = __init__
     return type(to_string(enum_type), base_classes, methods)
+
 
 def raise_for_error(response):
     try:

@@ -8,5 +8,5 @@ if __name__ == '__main__':
     RETURN_URL = 'http://localhost:8000'
     authentication = LinkedInAuthentication(API_KEY, API_SECRET, RETURN_URL,
                                             list(PERMISSIONS.enums.values()))
-    print((authentication.authorization_url))
+    print(authentication.authorization_url)
     application = LinkedInApplication(authentication)

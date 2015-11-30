@@ -1,10 +1,9 @@
 __author__ = 'Samuel Marks <samuelmarks@gmail.com>'
-__version__ = '0.1.0'
+__maintainer__ = "Marshall Humble <humblejm@gmail.com>"
+__version__ = '0.2.0'
 
-try:
-    from urllib.parse import urlparse
-except ImportError:
-    from urllib.parse import urlparse
+from urllib.parse import urlparse
+
 
 from socketserver import ThreadingTCPServer
 from http.server import SimpleHTTPRequestHandler

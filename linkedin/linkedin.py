@@ -549,3 +549,11 @@ class LinkedInApplication(object):
         response = self.make_request('PUT', url, data=json.dumps(is_liked))
         raise_for_error(response)
         return True
+    
+    def comment_as_company(self, company_id, update_key, comment):
+        comment = {'comment': comment}
+        url = '%s/updates/key=%s/update-comments-as-company' % (
+            ENDPOINTS.COMPANIES, company_id, update_key)
+        response = self.make_request('PUT', url, data=json.dumps(comment))
+        raise_for_error(response)
+        return True

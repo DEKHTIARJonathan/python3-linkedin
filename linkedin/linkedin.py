@@ -2,7 +2,7 @@ import contextlib
 import hashlib
 import random
 
-from urllib.parse import quote, quote_plus
+from urllib.parse import quote, quote_plus, urljoin
 
 import requests
 from requests_oauthlib import OAuth1
@@ -102,7 +102,11 @@ class LinkedInAuthentication(object):
         qsl = []
         for k, v in list(qd.items()):
             qsl.append('%s=%s' % (quote(k), quote(v)))
-        return self.AUTHORIZATION_URL, '&'.join(qsl)
+
+        return urljoin(self.AUTHORIZATION_URL,
+                       '?' + '&'.join(qsl),
+                       allow_fragments=True
+                       )
 
     @property
     def last_error(self):

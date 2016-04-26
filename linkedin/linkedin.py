@@ -25,11 +25,15 @@ allowed.  I will put the ones here in the comments that I have removed:
 """
 
 PERMISSIONS = enum('Permission',
-                   BASIC_PROFILE='r_basicprofile',
-                   EMAIL_ADDRESS='r_emailaddress',
                    COMPANY_ADMIN='rw_company_admin',
-                   SHARE='w_share'
-                   )
+                   BASIC_PROFILE='r_basicprofile',
+                   FULL_PROFILE='r_fullprofile',
+                   EMAIL_ADDRESS='r_emailaddress',
+                   NETWORK='r_network',
+                   CONTACT_INFO='r_contactinfo',
+                   NETWORK_UPDATES='rw_nus',
+                   GROUPS='rw_groups',
+                   MESSAGES='w_messages')
 
 ENDPOINTS = enum('LinkedInURL',
                  PEOPLE='https://api.linkedin.com/v1/people',

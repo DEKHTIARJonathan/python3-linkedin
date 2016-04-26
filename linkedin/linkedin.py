@@ -2,7 +2,7 @@ import contextlib
 import hashlib
 import random
 
-from urllib.parse import quote, quote_plus
+from urllib.parse import quote, quote_plus, urljoin
 
 import requests
 from requests_oauthlib import OAuth1
@@ -27,13 +27,8 @@ allowed.  I will put the ones here in the comments that I have removed:
 PERMISSIONS = enum('Permission',
                    COMPANY_ADMIN='rw_company_admin',
                    BASIC_PROFILE='r_basicprofile',
-                   FULL_PROFILE='r_fullprofile',
                    EMAIL_ADDRESS='r_emailaddress',
-                   NETWORK='r_network',
-                   CONTACT_INFO='r_contactinfo',
-                   NETWORK_UPDATES='rw_nus',
-                   GROUPS='rw_groups',
-                   MESSAGES='w_messages')
+                   SHARE='w_share')
 
 ENDPOINTS = enum('LinkedInURL',
                  PEOPLE='https://api.linkedin.com/v1/people',
@@ -107,7 +102,11 @@ class LinkedInAuthentication(object):
         qsl = []
         for k, v in list(qd.items()):
             qsl.append('%s=%s' % (quote(k), quote(v)))
-        return self.AUTHORIZATION_URL, '&'.join(qsl)
+
+        return urljoin(self.AUTHORIZATION_URL,
+                       '?' + '&'.join(qsl),
+                       allow_fragments=True
+                       )
 
     @property
     def last_error(self):

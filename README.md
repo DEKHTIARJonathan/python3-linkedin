@@ -1,5 +1,7 @@
 # Python LinkedIn
 
+[![LinkedIn](http://img4.hostingpics.net/pics/514667Capture.png)](http://developer.linkedin.com)
+
 Python interface to the LinkedIn API
 
 This library provides a pure Python interface to the LinkedIn **Profile**, **Group**, **Company**, **Jobs**, **Search**, **Share**, **Network** and **Invitation** REST APIs.

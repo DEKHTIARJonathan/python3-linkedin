@@ -4,7 +4,11 @@ __version__ = '0.2.0'
 
 from urllib.parse import urlparse
 
-
+try:
+    from urllib.parse import urlparse
+except ImportError:
+    from urlparse import urlparse
+    
 from socketserver import ThreadingTCPServer
 from http.server import SimpleHTTPRequestHandler
 

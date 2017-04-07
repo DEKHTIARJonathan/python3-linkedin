@@ -375,7 +375,16 @@ class LinkedInApplication(object):
         response = self.make_request('GET', url, params=params, headers=headers)
         raise_for_error(response)
         return response.json()
-
+    
+    def get_specific_company_update(self, company_id, update_id, params=None,
+                                    headers=None):
+        url = "%s/%s/updates/key=%s?format=json" % (
+            ENDPOINTS.COMPANIES, str(company_id), str(update_id)
+        )
+        response = self.make_request('GET', url, params=params, headers=headers)
+        raise_for_error(response)
+        return response.json()
+    
     def get_company_updates(self, company_id, params=None, headers=None):
         url = '%s/%s/updates' % (ENDPOINTS.COMPANIES, str(company_id))
         response = self.make_request('GET', url, params=params, headers=headers)

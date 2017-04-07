@@ -185,8 +185,7 @@ class LinkedInApplication(object):
 
         return requests.request(method.upper(), url, **kw)
 
-    def get_profile(self, member_id=None, member_url=None, selectors=None,
-                    params=None, headers=None):
+    def get_profile(self, member_id=None, member_url=None, selectors=None, params=None, headers=None, member_email=None):
         if member_id:
             if type(member_id) is list:
                 # Batch request, ids as CSV.
@@ -196,6 +195,8 @@ class LinkedInApplication(object):
                 url = '%s/id=%s' % (ENDPOINTS.PEOPLE, str(member_id))
         elif member_url:
             url = '%s/url=%s' % (ENDPOINTS.PEOPLE, quote_plus(member_url))
+        elif member_email:
+            url = '%s/email=%s' % (ENDPOINTS.PEOPLE, quote_plus(member_email))
         else:
             url = '%s/~' % ENDPOINTS.PEOPLE
         if selectors:

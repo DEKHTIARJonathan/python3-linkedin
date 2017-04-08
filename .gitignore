@@ -39,3 +39,4 @@ nosetests.xml
 .idea
 
 .settings/org.eclipse.core.resources.prefs
+venv/

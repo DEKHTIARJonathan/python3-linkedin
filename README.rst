@@ -17,7 +17,7 @@ You can install **python-linkedin** library via pip:
 
 .. code-block:: bash
 
-    $ pip install python-linkedin
+    $ pip install python3-linkedin
 
 Authentication
 -----------------------

@@ -47,7 +47,7 @@ Contributors:
 
 ## Installation
 
-The library is available with PIP:
+Available with the Python Package Index: https://pypi.python.org/pypi/python3-linkedin
 
 ```shell
 pip install python3-linkedin

@@ -56,7 +56,8 @@ Müssig <https://github.com/b3nelof0n>`__
 Installation
 ------------
 
-The library is available with PIP:
+Available with the Python Package Index:
+https://pypi.python.org/pypi/python3-linkedin
 
 .. code:: shell
 

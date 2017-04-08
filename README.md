@@ -46,19 +46,21 @@ Contributors:
 
 ## Installation
 
-At the moment while I am working out the issues with migrating to Python 3.4+ please install using this git repo and the setup.py file
+The library is available with PIP:
 
-One would clone the repo via:
+```shell
+pip install python3-linkedin
+```
 
+If prefered, the library can be compiled with following commands:
+
+```shell
+## First clone the repository
 git clone https://github.com/DEKHTIARJonathan/python-linkedin.git
 
-(or download the zip)
-
-and then move into the directory and run
-
+## Then install the library
 python setup.py install
-
-This will allow you to install this version on your system
+```
 
 ## Authentication
 

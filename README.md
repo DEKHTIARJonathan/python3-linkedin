@@ -1,6 +1,7 @@
-# Python LinkedIn
+# Python3-LinkedIn
 
 [![LinkedIn](http://img4.hostingpics.net/pics/514667Capture.png)](http://developer.linkedin.com)
+[![Build Status](https://travis-ci.org/DEKHTIARJonathan/python3-linkedin.svg?branch=master)](https://travis-ci.org/DEKHTIARJonathan/python3-linkedin)
 
 Python interface to the LinkedIn API
 

@@ -1,27 +1,44 @@
 language: python
+
 python:
 - 2.7
 - 3.4
 - 3.5
 - 3.6
+
 script: python setup.py test
+
 notifications:
 - email: false
+
 before_deploy:
 - python setup.py sdist
 - python setup.py bdist_wheel
 - python setup.py bdist_wheel --universal
 - python setup.py egg_info
 deploy:
-  matrix:
-  - provider: releases
-    file: 
-      - "dist/*"
-      - "python3_linkedin.egg-info/PKG-INFO"
-    file_glob: true
-    skip_cleanup: true
-    on:
-      tags: true
-      python: '3.6'
-    api_key:
-      secure: dQg498LJyak2GvNwnvSgU4ANOZLS5G2vnEGphcfhZi+n9O7YKkELpMTQrfV5k+FVbd2RKolDdro1Kqx9iqjxS5yWvyrEYh0ePkZtN2yFd94eZxBVavyVVy6Ou2A2c3CkdRiuOiyzo+AYs4dLnjSupZLAdiqfY46G6KdcdZgTZ6kWw9GLc+FMcQHjvCNPExjO64rkrdxnVwr6EXEaqfM7vW1Ss0QGo+erkMWn4zZbss4eW+5RASz0wX0Vn19puXL2Ec2xRtD6c1diBm0cxXWu2kV4TMBCXIqDvLfxYLh3xNbLhZLqX4bcx+ZoDBYk5i1X3oQywsOvGco71/3G7qVW0uZgMxf41mCFDJeL0fjwNXpCFBLcWTosCtZegf8P4NPFNxqATS7uQXKXC5K2VpaVDzqeF8PjJ8omAK7zXtlWLZQMu0rqTSF56ofcau712HRGljLmmIm0o8geY1T9AZmjXrkpL9UGj004Uz//McN0bl+1CLiBMxGzI1myOgqDgXtirHQFXGaNf4CM3TaVjr2FRWvpx3N5VP6N6ZoDYRVUAKOU1hwYQj5FNs7L7aLD6gdfssffhIVgCOKG4QkedqB1xrihdXnJKhKq9XIBEmSa4zPKZ070H/ggdCY8fOzdy5a0RKl+V0EiNXsJs3+78zJC+feBSRozjxj8r6fmuqbDOtM=
+
+- provider: pypi
+  user: jonathandekhtiar
+  password: "$PYPI_PASSWORD"
+  skip_cleanup: true
+  on:
+    tags: true
+    python: '3.6'
+    
+- provider: releases
+  file:
+  - dist/*
+  - python3_linkedin.egg-info/PKG-INFO
+  file_glob: true
+  skip_cleanup: true
+  api_key:
+    secure: dQg498LJyak2GvNwnvSgU4ANOZLS5G2vnEGphcfhZi+n9O7YKkELpMTQrfV5k+FVbd2RKolDdro1Kqx9iqjxS5yWvyrEYh0ePkZtN2yFd94eZxBVavyVVy6Ou2A2c3CkdRiuOiyzo+AYs4dLnjSupZLAdiqfY46G6KdcdZgTZ6kWw9GLc+FMcQHjvCNPExjO64rkrdxnVwr6EXEaqfM7vW1Ss0QGo+erkMWn4zZbss4eW+5RASz0wX0Vn19puXL2Ec2xRtD6c1diBm0cxXWu2kV4TMBCXIqDvLfxYLh3xNbLhZLqX4bcx+ZoDBYk5i1X3oQywsOvGco71/3G7qVW0uZgMxf41mCFDJeL0fjwNXpCFBLcWTosCtZegf8P4NPFNxqATS7uQXKXC5K2VpaVDzqeF8PjJ8omAK7zXtlWLZQMu0rqTSF56ofcau712HRGljLmmIm0o8geY1T9AZmjXrkpL9UGj004Uz//McN0bl+1CLiBMxGzI1myOgqDgXtirHQFXGaNf4CM3TaVjr2FRWvpx3N5VP6N6ZoDYRVUAKOU1hwYQj5FNs7L7aLD6gdfssffhIVgCOKG4QkedqB1xrihdXnJKhKq9XIBEmSa4zPKZ070H/ggdCY8fOzdy5a0RKl+V0EiNXsJs3+78zJC+feBSRozjxj8r6fmuqbDOtM=
+  on:
+    tags: true
+    python: '3.6'
+    
+env:
+  global:
+    ### === PYPI_PASSWORD === ###
+    secure: JqYY7DXhZoCGfRa384FDq1WXy5bxeMUEMFSxXZdExm7w4bZk4Zt0v3xBhiP3G5CzhUk12bnNYUO7DwvcZ+fayh0s0XIMPqCvPiY3Owvb28jKXYDjjOiy5TX/gdY20zb1EXxsmM2J2r9VZcOufkC/MSTLcqZZurnETK44QkxRq5N8A8KpwzVqcI+4zAi9ZEQqPmrHVXSgNfkimn2vt7cnkxG6PS5oQUuDzVNOjauiyMazESFf8pI639k3NR1MrHH57kSSleCqT7K9d1TGWjeXul4pwcYLxx6yWj/pmiCtNpL20jY4rxCxD5LRJ9WekaTZ1uR5zygMnLibtK3BkV59gu0cb71vfPkB8bf905nMhH43GLIyyAupIjqKkBJMHG4PuGIL8W8l6iIfNRP8psZ/lLLIi6HWz+QTCCPPmXhaxmefqR/sS4acLc3AuDG8QZI7pgRn+ldZQ39e1M+6NMW26nVBq5tNvhVl8EwqijpsrjjApH2IjQMVK2mM+xwOsCzgJ0cVH2eBVAq3qvsfkTLyzAqmorUllUCBOidfd1Q97n+QLyVOVsFGpbZwihaNvpzSnCzUELVDkAkgdppmsdooGeDGcc4IslNw4s1dLSBvO99+5+R/1Y+4BYwZkgJTM5DwglknSrVg8mo92/J8TINC0PW6i2FEUKqv7m0ZTrbqg2U=

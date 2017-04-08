@@ -1,8 +1,27 @@
 language: python
 python:
-  - 3.4
-  - 3.5
-  - 3.6
+- 2.7
+- 3.4
+- 3.5
+- 3.6
 script: python setup.py test
 notifications:
-  - email: false
+- email: false
+before_deploy:
+- python setup.py sdist
+- python setup.py bdist_wheel
+- python setup.py bdist_wheel --universal
+- python setup.py egg_info
+deploy:
+  matrix:
+  - provider: releases
+    file: 
+      - "dist/*"
+      - "python3_linkedin.egg-info/PKG-INFO"
+    file_glob: true
+    skip_cleanup: true
+    on:
+      tags: true
+      python: '3.6'
+    api_key:
+      secure: dQg498LJyak2GvNwnvSgU4ANOZLS5G2vnEGphcfhZi+n9O7YKkELpMTQrfV5k+FVbd2RKolDdro1Kqx9iqjxS5yWvyrEYh0ePkZtN2yFd94eZxBVavyVVy6Ou2A2c3CkdRiuOiyzo+AYs4dLnjSupZLAdiqfY46G6KdcdZgTZ6kWw9GLc+FMcQHjvCNPExjO64rkrdxnVwr6EXEaqfM7vW1Ss0QGo+erkMWn4zZbss4eW+5RASz0wX0Vn19puXL2Ec2xRtD6c1diBm0cxXWu2kV4TMBCXIqDvLfxYLh3xNbLhZLqX4bcx+ZoDBYk5i1X3oQywsOvGco71/3G7qVW0uZgMxf41mCFDJeL0fjwNXpCFBLcWTosCtZegf8P4NPFNxqATS7uQXKXC5K2VpaVDzqeF8PjJ8omAK7zXtlWLZQMu0rqTSF56ofcau712HRGljLmmIm0o8geY1T9AZmjXrkpL9UGj004Uz//McN0bl+1CLiBMxGzI1myOgqDgXtirHQFXGaNf4CM3TaVjr2FRWvpx3N5VP6N6ZoDYRVUAKOU1hwYQj5FNs7L7aLD6gdfssffhIVgCOKG4QkedqB1xrihdXnJKhKq9XIBEmSa4zPKZ070H/ggdCY8fOzdy5a0RKl+V0EiNXsJs3+78zJC+feBSRozjxj8r6fmuqbDOtM=

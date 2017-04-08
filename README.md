@@ -86,15 +86,20 @@ To connect to LinkedIn as a developer or just to access your own data, you don't
 from linkedin import linkedin
 
 # Define CONSUMER_KEY, CONSUMER_SECRET,  
-# USER_TOKEN, and USER_SECRET from the credentials 
+# USER_TOKEN, and USER_SECRET from the credentials
 # provided in your LinkedIn application
 
 # Instantiate the developer authentication class
 
-authentication = linkedin.LinkedInDeveloperAuthentication(CONSUMER_KEY, CONSUMER_SECRET, 
-                                                          USER_TOKEN, USER_SECRET, 
-                                                          RETURN_URL, linkedin.PERMISSIONS.enums.values())
-                                                          
+authentication = linkedin.LinkedInDeveloperAuthentication(
+                    CONSUMER_KEY,
+                    CONSUMER_SECRET,
+                    USER_TOKEN,
+                    USER_SECRET,
+                    RETURN_URL,
+                    linkedin.PERMISSIONS.enums.values()
+                )
+
 # Optionally one can send custom "state" value that will be returned from OAuth server
 # It can be used to track your user state or something else (it's up to you)
 # Be aware that this value is sent to OAuth server AS IS - make sure to encode or hash it
@@ -113,53 +118,76 @@ application.get_profile()
 
 ### Production Authentication
 
-In order to use the LinkedIn OAuth 2.0, you need to have these two keys:
+In order to use the LinkedIn OAuth 2.0, you need to have these two keys from the from the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps):
 ```python
 APPLICATON_KEY    = '##############'
 APPLICATON_SECRET = '################'
 ```
-You can get more detail from [here](https://developer.linkedin.com/docs/oauth2).
+You can get more detail about the Oauth2 authentication process from [here](https://developer.linkedin.com/docs/oauth2).
 
-
-
-You can also get those keys from the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps).
 
 LinkedIn redirects the user back to your website's URL after granting access (giving proper permissions) to your application. We call that url **RETURN URL**. Assuming your return url is **https://localhost:8000**, you can write something like this:
 
 ```python
 from linkedin import linkedin
 
-KEY = '##############'
-SECRET = '################'
+APPLICATON_KEY    = '##############'
+APPLICATON_SECRET = '################'
 
 RETURN_URL = 'http://localhost:8000'
 
-authentication = linkedin.LinkedInAuthentication(API_KEY, API_SECRET, RETURN_URL, linkedin.PERMISSIONS.enums.values())
+authentication = linkedin.LinkedInAuthentication(
+                    APPLICATON_KEY,
+                    APPLICATON_SECRET,
+                    RETURN_URL,
+                    linkedin.PERMISSIONS.enums.values()
+                )
+
 # Optionally one can send custom "state" value that will be returned from OAuth server
 # It can be used to track your user state or something else (it's up to you)
 # Be aware that this value is sent to OAuth server AS IS - make sure to encode or hash it
 #authorization.state = 'your_encoded_message'
-print authentication.authorization_url  # open this url on your browser
-application = linkedin.LinkedInApplication(authentication)
+
+print (authentication.authorization_url)  # open this url on your browser
 ```
 When you grant access to the application, you will be redirected to the return url with the following query strings appended to your **RETURN_URL**:
 
 ```python
-"http://localhost:8000/?code=AQTXrv3Pe1iWS0EQvLg0NJA8ju_XuiadXACqHennhWih7iRyDSzAm5jaf3R7I8&state=ea34a04b91c72863c82878d2b8f1836c"
+"http://localhost:8000/?code=#############################################&state=########################"
 ```
 
-This means that the value of the **authorization_code** is **AQTXrv3Pe1iWS0EQvLg0NJA8ju_XuiadXACqHennhWih7iRyDSzAm5jaf3R7I8**. After setting it by hand, we can call the **.get_access_token()** to get the actual token.
+This url contains the value of the **authorization_code**.
+After setting it by hand, we can call the **.get_access_token()** to get the actual token.
 
 ```python
-authentication.authorization_code = 'AQTXrv3Pe1iWS0EQvLg0NJA8ju_XuiadXACqHennhWih7iRyDSzAm5jaf3R7I8'
-authentication.get_access_token()
+from linkedin import linkedin
+
+APPLICATON_KEY    = '##############'
+APPLICATON_SECRET = '################'
+
+RETURN_URL = 'http://localhost:8000'
+
+authentication = linkedin.LinkedInAuthentication(
+                    APPLICATON_KEY,
+                    APPLICATON_SECRET,
+                    RETURN_URL,
+                    linkedin.PERMISSIONS.enums.values()
+                )
+
+authentication.authorization_code = '#############################################'
+result = authentication.get_access_token()
+
+print ("Access Token:", result.access_token)
+print ("Expires in (seconds):", result.expires_in)
 ```
 
 After you get the access token, you are now permitted to make API calls on behalf of the user who granted access to you app. In addition to that, in order to prevent from going through the OAuth flow for every consecutive request,
 one can directly assign the access token obtained before to the application instance.
 
 ```python
-application = linkedin.LinkedInApplication(token='AQTFtPILQkJzXHrHtyQ0rjLe3W0I')
+from linkedin import linkedin
+
+application = linkedin.LinkedInApplication(token='###################################')
 ```
 
 ## Quick Usage From Python Interpreter
@@ -325,7 +353,7 @@ application.get_post_comments(
         "text"
     ],
     params={"start": 0, "count": 20}
-) 
+)
 ```
 
 You can also submit a new post into a specific group.

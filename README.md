@@ -8,6 +8,42 @@ This library provides a pure Python interface to the LinkedIn **Profile**, **Gro
 
 [LinkedIn](https://developer.linkedin.com) provides a service that lets people bring their LinkedIn profiles and networks with them to your site or application via their OAuth based API. This library provides a lightweight interface over a complicated LinkedIn OAuth based API to make it for python programmers easy to use.
 
+## Acknowledgement
+
+* This library was created by [Ozgur Vatansever](https://github.com/ozgur).
+* In 2016, the library was converted  to Python 3 by [Marshall Lusher](https://github.com/marshalllusher)
+
+Maintainer : [Jonathan Dekhtiar](https://github.com/DEKHTIARJonathan)
+
+Contributors:
+* [Ozgur Vatansever](https://github.com/ozgur)
+* [Marshall Lusher](https://github.com/marshalllusher)
+* [Jonathan Dekhtiar](https://github.com/DEKHTIARJonathan)
+* [Abraham Williams](https://github.com/abraham)
+* [Matthew A. Russell](https://github.com/ptwobrussell)
+* [Samuel Marks](https://github.com/SamuelMarks)
+* [Emlyn Clay](https://github.com/EmlynC)
+* [Ivan Kravets](https://github.com/ivankravets)
+* [Devin Barry](https://github.com/devinbarry)
+* [Josh Owen](https://github.com/joshowen)
+* [Chengxin Cai](https://github.com/iacxc)
+* [Yuri Prezument](https://github.com/yprez)
+* [Jay Zeng](https://github.com/jayzeng)
+* [Julien Muniak](https://github.com/Darune)
+* [John Franey](https://github.com/johnfraney)
+* [Adrian Sgn](https://github.com/adrian-sgn)
+* [Luca Adalberto Vandro](https://github.com/lucavandro)
+* [Jack](https://github.com/mclate)
+* [Scotty Delta](https://github.com/scottydelta)
+* [Michael Blakeley](https://github.com/mblakele)
+* [Song Zhen-Gang](https://github.com/lyroge)
+* [Ismail Coskuner](https://github.com/ismix)
+* [Marshyang](https://github.com/marshyang)
+* [Iurii Kudriavtsev](https://github.com/ikudriavtsev)
+* [Kartik Ayyar](https://github.com/ayyar)
+* [Kit Sunde](https://github.com/kitsunde)
+* [Patrick Müssig](https://github.com/b3nelof0n)
+
 ## Installation
 
 At the moment while I am working out the issues with migrating to Python 3.4+ please install using this git repo and the setup.py file

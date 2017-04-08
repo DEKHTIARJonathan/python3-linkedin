@@ -8,27 +8,67 @@ This library provides a pure Python interface to the LinkedIn **Profile**, **Gro
 
 [LinkedIn](https://developer.linkedin.com) provides a service that lets people bring their LinkedIn profiles and networks with them to your site or application via their OAuth based API. This library provides a lightweight interface over a complicated LinkedIn OAuth based API to make it for python programmers easy to use.
 
+## Acknowledgement
+
+* This library was created by [Ozgur Vatansever](https://github.com/ozgur).
+* In 2016, the library was converted  to Python 3 by [Marshall Lusher](https://github.com/marshalllusher)
+
+Maintainer : [Jonathan Dekhtiar](https://github.com/DEKHTIARJonathan)
+
+Contributors:
+* [Ozgur Vatansever](https://github.com/ozgur)
+* [Marshall Lusher](https://github.com/marshalllusher)
+* [Jonathan Dekhtiar](https://github.com/DEKHTIARJonathan)
+* [Abraham Williams](https://github.com/abraham)
+* [Matthew A. Russell](https://github.com/ptwobrussell)
+* [Samuel Marks](https://github.com/SamuelMarks)
+* [Emlyn Clay](https://github.com/EmlynC)
+* [Ivan Kravets](https://github.com/ivankravets)
+* [Devin Barry](https://github.com/devinbarry)
+* [Josh Owen](https://github.com/joshowen)
+* [Chengxin Cai](https://github.com/iacxc)
+* [Yuri Prezument](https://github.com/yprez)
+* [Jay Zeng](https://github.com/jayzeng)
+* [Julien Muniak](https://github.com/Darune)
+* [John Franey](https://github.com/johnfraney)
+* [Adrian Sgn](https://github.com/adrian-sgn)
+* [Luca Adalberto Vandro](https://github.com/lucavandro)
+* [Jack](https://github.com/mclate)
+* [Scotty Delta](https://github.com/scottydelta)
+* [Michael Blakeley](https://github.com/mblakele)
+* [Song Zhen-Gang](https://github.com/lyroge)
+* [Ismail Coskuner](https://github.com/ismix)
+* [Marshyang](https://github.com/marshyang)
+* [Iurii Kudriavtsev](https://github.com/ikudriavtsev)
+* [Kartik Ayyar](https://github.com/ayyar)
+* [Kit Sunde](https://github.com/kitsunde)
+* [Patrick Müssig](https://github.com/b3nelof0n)
+
 ## Installation
 
-At the moment while I am working out the issues with migrating to Python 3.4+ please install using this git repo and the setup.py file
+The library is available with PIP:
 
-One would clone the repo via:
+```shell
+pip install python3-linkedin
+```
 
+If prefered, the library can be compiled with following commands:
+
+```shell
+## First clone the repository
 git clone https://github.com/DEKHTIARJonathan/python-linkedin.git
 
-(or download the zip)
-
-and then move into the directory and run
-
+## Then install the library
 python setup.py install
-
-This will allow you to install this version on your system
+```
 
 ## Authentication
 
 The LinkedIn REST API now supports the **OAuth 2.0** protocol for authentication. This package provides a full OAuth 2.0 implementation for connecting to LinkedIn as well as an option for using an OAuth 1.0a flow that can be helpful for development purposes or just accessing your own data.
 
 ### HTTP API example
+
+Please declare and setup a new application on the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps)
 
 Set `LINKEDIN_API_KEY` and `LINKEDIN_API_SECRET`, configure your app to redirect to `http://localhost:8080/code`, then execute:
 
@@ -72,23 +112,26 @@ application.get_profile()
 
 
 ### Production Authentication
-In order to use the LinkedIn OAuth 2.0, you have an **application key** and **application secret**. You can get more detail from [here](https://developers.linkedin.com/documents/authentication).
 
-For debugging purposes you can use the credentials below. It belongs to my test application. Nothing's harmful.
-
+In order to use the LinkedIn OAuth 2.0, you need to have these two keys:
 ```python
-KEY = 'wFNJekVpDCJtRPFX812pQsJee-gt0zO4X5XmG6wcfSOSlLocxodAXNMbl0_hw3Vl'
-SECRET = 'daJDa6_8UcnGMw1yuq9TjoO_PMKukXMo8vEMo7Qv5J-G3SPgrAV0FqFCd0TNjQyG'
+APPLICATON_KEY    = '##############'
+APPLICATON_SECRET = '################'
 ```
-You can also get those keys from [here](https://developer.linkedin.com/rest).
+You can get more detail from [here](https://developer.linkedin.com/docs/oauth2).
+
+
+
+You can also get those keys from the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps).
 
 LinkedIn redirects the user back to your website's URL after granting access (giving proper permissions) to your application. We call that url **RETURN URL**. Assuming your return url is **https://localhost:8000**, you can write something like this:
 
 ```python
 from linkedin import linkedin
 
-API_KEY = 'wFNJekVpDCJtRPFX812pQsJee-gt0zO4X5XmG6wcfSOSlLocxodAXNMbl0_hw3Vl'
-API_SECRET = 'daJDa6_8UcnGMw1yuq9TjoO_PMKukXMo8vEMo7Qv5J-G3SPgrAV0FqFCd0TNjQyG'
+KEY = '##############'
+SECRET = '################'
+
 RETURN_URL = 'http://localhost:8000'
 
 authentication = linkedin.LinkedInAuthentication(API_KEY, API_SECRET, RETURN_URL, linkedin.PERMISSIONS.enums.values())

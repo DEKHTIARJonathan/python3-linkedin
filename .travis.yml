@@ -16,8 +16,8 @@ before_deploy:
 - python setup.py bdist_wheel
 - python setup.py bdist_wheel --universal
 - python setup.py egg_info
-deploy:
 
+deploy:
 - provider: pypi
   user: jonathandekhtiar
   password: "$PYPI_PASSWORD"
@@ -32,8 +32,7 @@ deploy:
   - python3_linkedin.egg-info/PKG-INFO
   file_glob: true
   skip_cleanup: true
-  api_key:
-    secure: dQg498LJyak2GvNwnvSgU4ANOZLS5G2vnEGphcfhZi+n9O7YKkELpMTQrfV5k+FVbd2RKolDdro1Kqx9iqjxS5yWvyrEYh0ePkZtN2yFd94eZxBVavyVVy6Ou2A2c3CkdRiuOiyzo+AYs4dLnjSupZLAdiqfY46G6KdcdZgTZ6kWw9GLc+FMcQHjvCNPExjO64rkrdxnVwr6EXEaqfM7vW1Ss0QGo+erkMWn4zZbss4eW+5RASz0wX0Vn19puXL2Ec2xRtD6c1diBm0cxXWu2kV4TMBCXIqDvLfxYLh3xNbLhZLqX4bcx+ZoDBYk5i1X3oQywsOvGco71/3G7qVW0uZgMxf41mCFDJeL0fjwNXpCFBLcWTosCtZegf8P4NPFNxqATS7uQXKXC5K2VpaVDzqeF8PjJ8omAK7zXtlWLZQMu0rqTSF56ofcau712HRGljLmmIm0o8geY1T9AZmjXrkpL9UGj004Uz//McN0bl+1CLiBMxGzI1myOgqDgXtirHQFXGaNf4CM3TaVjr2FRWvpx3N5VP6N6ZoDYRVUAKOU1hwYQj5FNs7L7aLD6gdfssffhIVgCOKG4QkedqB1xrihdXnJKhKq9XIBEmSa4zPKZ070H/ggdCY8fOzdy5a0RKl+V0EiNXsJs3+78zJC+feBSRozjxj8r6fmuqbDOtM=
+  api_key: "$GITHUB_PERSONAL_TOKEN"
   on:
     tags: true
     python: '3.6'
@@ -41,4 +40,7 @@ deploy:
 env:
   global:
     ### === PYPI_PASSWORD === ###
-    secure: JqYY7DXhZoCGfRa384FDq1WXy5bxeMUEMFSxXZdExm7w4bZk4Zt0v3xBhiP3G5CzhUk12bnNYUO7DwvcZ+fayh0s0XIMPqCvPiY3Owvb28jKXYDjjOiy5TX/gdY20zb1EXxsmM2J2r9VZcOufkC/MSTLcqZZurnETK44QkxRq5N8A8KpwzVqcI+4zAi9ZEQqPmrHVXSgNfkimn2vt7cnkxG6PS5oQUuDzVNOjauiyMazESFf8pI639k3NR1MrHH57kSSleCqT7K9d1TGWjeXul4pwcYLxx6yWj/pmiCtNpL20jY4rxCxD5LRJ9WekaTZ1uR5zygMnLibtK3BkV59gu0cb71vfPkB8bf905nMhH43GLIyyAupIjqKkBJMHG4PuGIL8W8l6iIfNRP8psZ/lLLIi6HWz+QTCCPPmXhaxmefqR/sS4acLc3AuDG8QZI7pgRn+ldZQ39e1M+6NMW26nVBq5tNvhVl8EwqijpsrjjApH2IjQMVK2mM+xwOsCzgJ0cVH2eBVAq3qvsfkTLyzAqmorUllUCBOidfd1Q97n+QLyVOVsFGpbZwihaNvpzSnCzUELVDkAkgdppmsdooGeDGcc4IslNw4s1dLSBvO99+5+R/1Y+4BYwZkgJTM5DwglknSrVg8mo92/J8TINC0PW6i2FEUKqv7m0ZTrbqg2U=
+    secure: "SNuDIN+681K9stWVif/UAuAq2alqU3PcQz58aAW78IjT9gx0qF/cN+iETGzu+Id7gw2Xy5S1ZxZs5xqrvBSqw2NPVmwUB8SdNKF1n5FOrcX0Qf6gt9QIv6wooYR42hXwtsUBiUqKXBu4hVzJK/5KmjAslmL/UXxaGt8tnZq6LTNPTTSYivV7oL+uakTRSQUFAlbJ9BZlLl2BfsWE/ikXeqQe/w9YCSXwPfRNY/xRddrhennvYyBOXjEYBdc1L9JfMIRTAdcZ3nUy+5ldPAi+VJ8cUfDrWz79UIHej2rgZ6K7PbUEhGB/YOHBns2/VJXdXD/hwm7xdCULYF/lHU/UtxX56x6oxJnfWqUkHYtFG8/hAO9u7ZsCY1fMODE2r7xdnTpIXbyCJqEGoHjlZVZ7uXaJlHlCw9kiKTey0T3g2uotOgqjm4I+slfox8H+MUfH2iveN0TS/tbMLfBDUY3IO31cZhQurKSrsp/2nc87aAJdUkS6Y6A3okUQ8gYMVPntXcYSKkOqQhzVaUPWG1b36vPvapodBcXb6UgjLCiu1xMiwHumC4L5s5Y49bNZG+Gl0yn0CqwjR5GJZUVdL4yo95oFZDs/ROXzX0z4wuKYSUv1Rh9KnxXJFMMAdBZY5REYWPZkv6/aX+Ibr07youHGggOz+HnYhkiL6ScDMslaraQ="
+    
+    ### === GITHUB_PERSONAL_TOKEN === ###
+    secure: "HlfrgYd/u4wcURwtbeqkLB8dwy8UP9zewtMIBjI28L0QWEb7+A972HyvQvdtQFW3YiZRzsQUz3n101MpJefYEy3YbtH4iqfnu1ymfKP2D3beG0svae7eW8EBTMV76j2U+XD5+ozfnbhEKRbhZ2GCSTbMSDRNT99NHsvtkkp3Njt+vSXPX4b0GmIwHzkpRF5TV60lR9E4mHdWJtqlC5kRr0EMK+Pw0kHV8AEIb32fhBLfdrw4Ci+/10VzJZWffxzPJ2EsLhKjV4zH67oseZSCuRsNRLPOdit/FkkD3fYOqXCoJlBgFlSKKwCeLFj/8RwDMwHqib3trdLtbj0Yi/c12O84w+ZLLC55QTr1hXo6BcivzpgtQRfkV5Uca3+EBJHw3La+H5ry2qcIGnU14met/aHp+sMkKxZgrXAGBd81f6cFgsw9t3DG+Pq/0XB8quBdhnAXMzmGSIYdNZj6QwUVeDbXABdMrXuSErwdNHSFAPocsY0qJASzsixqFC3bwPrxbzyDB8JW64t7CTfrQLGZr/ovOtsOnvQl5Mm43Jihj47MAAp5R8UKwPn5w2N6N6f1AZYCvcQ/+8sMe/0Kd6fb8xprAiRgcdJZYQOrPO3cCvhWR/HG8mF3u3QtLqxo35vvvKqmww5nzQR6iYrOUE5WLiG/UTaB0NUV4tVwHVJPT/8="

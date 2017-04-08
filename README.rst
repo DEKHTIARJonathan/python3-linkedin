@@ -67,7 +67,7 @@ If prefered, the library can be compiled with following commands:
 .. code:: shell
 
     ## First clone the repository
-    git clone https://github.com/DEKHTIARJonathan/python-linkedin.git
+    git clone https://github.com/DEKHTIARJonathan/python3-linkedin.git
 
     ## Then install the library
     python setup.py install

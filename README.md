@@ -68,6 +68,8 @@ The LinkedIn REST API now supports the **OAuth 2.0** protocol for authentication
 
 ### HTTP API example
 
+Please declare and setup a new application on the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps)
+
 Set `LINKEDIN_API_KEY` and `LINKEDIN_API_SECRET`, configure your app to redirect to `http://localhost:8080/code`, then execute:
 
   0. `http_api.py`
@@ -110,23 +112,26 @@ application.get_profile()
 
 
 ### Production Authentication
-In order to use the LinkedIn OAuth 2.0, you have an **application key** and **application secret**. You can get more detail from [here](https://developers.linkedin.com/documents/authentication).
 
-For debugging purposes you can use the credentials below. It belongs to my test application. Nothing's harmful.
-
+In order to use the LinkedIn OAuth 2.0, you need to have these two keys:
 ```python
-KEY = 'wFNJekVpDCJtRPFX812pQsJee-gt0zO4X5XmG6wcfSOSlLocxodAXNMbl0_hw3Vl'
-SECRET = 'daJDa6_8UcnGMw1yuq9TjoO_PMKukXMo8vEMo7Qv5J-G3SPgrAV0FqFCd0TNjQyG'
+APPLICATON_KEY    = '##############'
+APPLICATON_SECRET = '################'
 ```
-You can also get those keys from [here](https://developer.linkedin.com/rest).
+You can get more detail from [here](https://developer.linkedin.com/docs/oauth2).
+
+
+
+You can also get those keys from the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps).
 
 LinkedIn redirects the user back to your website's URL after granting access (giving proper permissions) to your application. We call that url **RETURN URL**. Assuming your return url is **https://localhost:8000**, you can write something like this:
 
 ```python
 from linkedin import linkedin
 
-API_KEY = 'wFNJekVpDCJtRPFX812pQsJee-gt0zO4X5XmG6wcfSOSlLocxodAXNMbl0_hw3Vl'
-API_SECRET = 'daJDa6_8UcnGMw1yuq9TjoO_PMKukXMo8vEMo7Qv5J-G3SPgrAV0FqFCd0TNjQyG'
+KEY = '##############'
+SECRET = '################'
+
 RETURN_URL = 'http://localhost:8000'
 
 authentication = linkedin.LinkedInAuthentication(API_KEY, API_SECRET, RETURN_URL, linkedin.PERMISSIONS.enums.values())

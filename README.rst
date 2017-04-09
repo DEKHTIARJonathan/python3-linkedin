@@ -636,7 +636,7 @@ the `Throttle Limits
 Documentation <https://developer.linkedin.com/documents/throttle-limits>`__
 to get more information about it.
 
-.. |LinkedIn| image:: http://img4.hostingpics.net/pics/514667Capture.png
+.. |LinkedIn| image:: https://img4.hostingpics.net/pics/514667Capture.png
    :target: http://developer.linkedin.com
 .. |Build Status| image:: https://travis-ci.org/DEKHTIARJonathan/python3-linkedin.svg?branch=master
    :target: https://travis-ci.org/DEKHTIARJonathan/python3-linkedin

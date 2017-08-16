@@ -10,6 +10,20 @@ This library provides a pure Python interface to the LinkedIn **Profile**, **Gro
 
 [LinkedIn](https://developer.linkedin.com) provides a service that lets people bring their LinkedIn profiles and networks with them to your site or application via their OAuth based API. This library provides a lightweight interface over a complicated LinkedIn OAuth based API to make it for python programmers easy to use.
 
+# Contributing guidelines
+
+Please have a look to the [Contributing Guidelines](CONTRIBUTING.md) first.
+
+We follow the "fork-and-pull" Git workflow.
+
+1. **Fork** the repo on GitHub
+2. **Clone** the project to your own machine
+3. **Commit** changes to your own branch
+4. **Push** your work back up to your fork
+5. Submit a **Pull request** so that we can review your changes
+
+NOTE: Be sure to merge the latest from "upstream" before making a pull request!
+
 ## Acknowledgement
 
 * This library was created by [Ozgur Vatansever](https://github.com/ozgur).

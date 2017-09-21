@@ -182,7 +182,7 @@ class LinkedInApplication(object):
             kw.update({'auth': auth})
         else:
             params.update({'oauth2_access_token': self.authentication.token.access_token})
-
+        
         return requests.request(method.upper(), url, **kw)
 
     def get_profile(self, member_id=None, member_url=None, selectors=None, params=None, headers=None, member_email=None):
@@ -360,6 +360,7 @@ class LinkedInApplication(object):
                       params=None, headers=None):
         identifiers = []
         url = ENDPOINTS.COMPANIES
+        
         if company_ids:
             identifiers += list(map(str, company_ids))
 
@@ -368,7 +369,7 @@ class LinkedInApplication(object):
 
         if identifiers:
             url = '%s::(%s)' % (url, ','.join(identifiers))
-
+            
         if selectors:
             url = '%s:(%s)' % (url, LinkedInSelector.parse(selectors))
 
@@ -595,8 +596,7 @@ class LinkedInApplication(object):
 
     def get_share_comments(self, post_id, selectors=None, params=None,
                            headers=None):
-        url = '%s/~/network/updates/key=%s/update-comments' % (ENDPOINTS.PEOPLE,
-                                                               post_id)
+        url = '%s/~/network/updates/key=%s/update-comments' % (ENDPOINTS.PEOPLE, post_id)
         if selectors:
             url = '%s:(%s)' % (url, LinkedInSelector.parse(selectors))
 
@@ -611,6 +611,17 @@ class LinkedInApplication(object):
             url = '%s:(%s)' % (url, LinkedInSelector.parse(selectors))
 
         response = self.make_request('GET', url, params=params, headers=headers)
+        raise_for_error(response)
+        return response.json()
+        
+    def get_companies_user_is_admin(self, params=None, headers=None):
+        
+        if params == None:
+            params = dict()
+            
+        params.update({"is-company-admin": True})
+        
+        response = self.make_request('GET', ENDPOINTS.COMPANIES, params=params, headers=headers)
         raise_for_error(response)
         return response.json()
 
@@ -628,8 +639,7 @@ class LinkedInApplication(object):
     
     def comment_as_company(self, company_id, update_key, comment):
         comment = {'comment': comment}
-        url = '%s/updates/key=%s/update-comments-as-company' % (
-            ENDPOINTS.COMPANIES, company_id, update_key)
+        url = '%s/updates/key=%s/update-comments-as-company' % (ENDPOINTS.COMPANIES, company_id, update_key)
         response = self.make_request('PUT', url, data=json.dumps(comment))
         raise_for_error(response)
         return True

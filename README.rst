@@ -68,7 +68,8 @@ Coskuner <https://github.com/ismix>`__ \*
 Kudriavtsev <https://github.com/ikudriavtsev>`__ \* `Kartik
 Ayyar <https://github.com/ayyar>`__ \* `Kit
 Sunde <https://github.com/kitsunde>`__ \* `Patrick
-Müssig <https://github.com/b3nelof0n>`__
+Müssig <https://github.com/b3nelof0n>`__ \* `Aurélien
+Grosdidier <https://github.com/aurelg>`__
 
 Installation
 ------------

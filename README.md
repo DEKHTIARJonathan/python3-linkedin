@@ -84,7 +84,7 @@ The LinkedIn REST API now supports the **OAuth 2.0** protocol for authentication
 
 ### HTTP API example
 
-Please declare and setup a new application on the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps). Note you `Client ID` and `Client secret`. Configure it to redirect to `http://localhost:8080/code/` (or to whatever local URL you decide, as long as you change it in all `examples` as well).
+Please declare and setup a new application on the [LinkedIn Developer Console](https://www.linkedin.com/developer/apps). Note your `Client ID` and `Client secret`. Configure it to redirect to `http://localhost:8080/code/` (or to whatever local URL you decide, as long as you change it in all `examples` as well).
 
 Set `Client ID` and `Client secret` in `examples/http_api.py`, then execute:
 

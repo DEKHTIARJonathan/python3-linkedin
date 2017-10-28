@@ -59,6 +59,7 @@ Contributors:
 * [Kartik Ayyar](https://github.com/ayyar)
 * [Kit Sunde](https://github.com/kitsunde)
 * [Patrick Müssig](https://github.com/b3nelof0n)
+* [Aurélien Grosdidier](https://github.com/aurelg)
 
 ## Installation
 

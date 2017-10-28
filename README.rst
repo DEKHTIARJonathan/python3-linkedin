@@ -103,7 +103,7 @@ HTTP API example
 ~~~~~~~~~~~~~~~~
 
 Please declare and setup a new application on the `LinkedIn Developer
-Console <https://www.linkedin.com/developer/apps>`__. Note you
+Console <https://www.linkedin.com/developer/apps>`__. Note your
 ``Client ID`` and ``Client secret``. Configure it to redirect to
 ``http://localhost:8080/code/`` (or to whatever local URL you decide, as
 long as you change it in all ``examples`` as well).
